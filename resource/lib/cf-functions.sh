@@ -652,7 +652,7 @@ function cf::delete() {
   local app_name=${1:?app_name null or not set}
   local delete_mapped_routes=${2:-}
 
-  if [ -n "$delete_mapped_routes" ]; then
+  if [ -n "$delete_mapped_routes" ] && [[ "$delete_mapped_routes" =~ ^(TRUE|True|true|YES|Yes|yes|Y|y)$ ]]; then
     cf::cf delete "$app_name" -f -r
   else
     cf::cf delete "$app_name" -f
